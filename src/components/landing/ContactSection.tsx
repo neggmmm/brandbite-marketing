@@ -40,6 +40,7 @@ const ContactSection = () => {
 
   const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();
+     setSending(true);
     if (!clientData.name || !clientData.email || !clientData.restaurant || !clientData.message) {
       setStatusMessage("Please fill in all fields.");
       setSentName("");
@@ -129,11 +130,10 @@ const ContactSection = () => {
               <div className="space-y-2">
                 <Label htmlFor="name">Your Name</Label>
                 <Input
-                 value={clientData.name} onChange={(e) => setClientData({ ...clientData, name: e.target.value })}
+                  name="name"
                   id="name"
-                  placeholder="John Smith"
-                  className="h-12"
-                  required
+                  value={clientData.name}
+                  onChange={(e) => setClientData({ ...clientData, name: e.target.value })}
                 />
               </div>
 
@@ -141,6 +141,7 @@ const ContactSection = () => {
                 <Label htmlFor="restaurant">Restaurant / Cafe Name</Label>
                 <Input
                   value={clientData.restaurant} onChange={(e) => setClientData({ ...clientData, restaurant: e.target.value })}
+                  name="restaurant"
                   id="restaurant"
                   placeholder="The Golden Spoon"
                   className="h-12"
@@ -152,6 +153,7 @@ const ContactSection = () => {
                 <Label htmlFor="email">Email Address</Label>
                 <Input
                   value={clientData.email} onChange={(e) => setClientData({ ...clientData, email: e.target.value })}
+                  name="email"
                   id="email"
                   type="email"
                   placeholder="john@restaurant.com"
@@ -164,6 +166,7 @@ const ContactSection = () => {
                 <Label htmlFor="message">Message</Label>
                 <Textarea
                   value={clientData.message} onChange={(e) => setClientData({ ...clientData, message: e.target.value })}
+                  name="message"
                   id="message"
                   placeholder="Tell us about your restaurant and what you're looking for..."
                   className="min-h-[120px] resize-none"
@@ -178,7 +181,7 @@ const ContactSection = () => {
                 className="w-full h-12 font-semibold shadow-glow"
               >
                 <Send className="w-4 h-4 mr-2" />
-                 {sending ? "Sending..." : "Contact Us"}
+                {sending ? "Sending..." : "Contact Us"}
               </Button>
             </form>
           </div>
